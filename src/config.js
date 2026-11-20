@@ -3,10 +3,15 @@
 //  Values marked PLACEHOLDER are examples — replace with your own.
 // ─────────────────────────────────────────────────────────────
 
+import music from './assets/mp3/experience_eunaudi.mp3'
+
 export const wedding = {
-  groom: 'Boafo',
-  bride: 'Princess',
-  initials: 'B&P',
+  partner1: 'Ella', // shown first
+  partner2: 'Andy',
+  initials: 'E&A',
+
+  // Colour theme: 'classic' (cream, gold & burgundy) or 'sage' (soft greens)
+  theme: 'classic',
 
   // PLACEHOLDER — ceremony date/time. Keep an explicit UTC offset
   // ('Z' = UTC, which is Ghana time; e.g. '+01:00' elsewhere) so guests
@@ -14,14 +19,15 @@ export const wedding = {
   date: '2027-06-12T10:00:00Z',
   dateLabel: 'Saturday, 12 June 2027',
   dateShort: '12 · 06 · 27',
-  city: 'Accra, Ghana', // PLACEHOLDER
 
-  // Opening words under the names — personalise freely
+  // Opening words under the names — personalise freely.
+  // blessing: an optional first line (a verse, prayer or saying); leave '' to hide it.
   quote: {
+    blessing: '',
     lines: ['Two hearts', 'One promise', 'A lifetime of love'],
     greeting: 'Dear Friends and Family',
     message:
-      'Join us for a day of love, laughter, prayer and unforgettable memories as we begin our forever.',
+      'With full hearts, we invite you to share in the happiest day of our lives and to celebrate the beginning of our story together.',
   },
 
   story: [
@@ -41,17 +47,19 @@ export const wedding = {
 
   // PLACEHOLDER schedule
   schedule: [
-    { time: '10:00 AM', title: 'Guest Arrival', icon: 'glass' },
-    { time: '10:30 AM', title: 'Wedding Ceremony', icon: 'rings' },
-    { time: '1:00 PM', title: 'Reception & Lunch', icon: 'dinner' },
-    { time: '4:00 PM', title: 'First Dance & Party', icon: 'music' },
+    { time: '10 AM', title: 'Guest Arrival' },
+    { time: '11 AM', title: 'Wedding Ceremony' },
+    { time: '1 PM', title: 'Cocktail Hour' },
+    { time: '2 PM', title: 'Reception & Lunch' },
+    { time: '5 PM', title: 'First Dance & Party' },
   ],
 
-  // PLACEHOLDER venue — mapQuery is what the embedded Google map searches for
+  // mapQuery is what the embedded Google map and "Get directions" search for.
+  // Add the street address (or paste a Google Maps place name) for a precise pin.
   venue: {
-    name: 'Replace with venue name',
-    address: 'Replace with venue address',
-    mapQuery: 'Accra, Ghana',
+    name: 'Delcam FB Limited',
+    address: '', // e.g. street, town — shown under the name when filled in
+    mapQuery: 'Delcam FB Limited',
   },
 
   dressCode: {
@@ -78,9 +86,9 @@ export const wedding = {
   childrenAllowed: true, // shows a "children attending" field on the RSVP
 
   // Optional files you can drop into the /public folder:
-  music: '/music.mp3', // background music, starts when the envelope is tapped
+  music, // background music (src/assets/mp3), starts when the envelope is tapped and loops
   photo: '/couple.jpg', // your photo in the closing section
   heroImage: '/hero.jpg', // optional painted scene that replaces the drawn garden arch
 
-  hashtag: '#BoafoAndPrincess2027',
+  hashtag: '#EllaAndAndy2027',
 }

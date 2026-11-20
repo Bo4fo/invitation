@@ -7,6 +7,7 @@ export default function MusicToggle({ playing, available, onToggle }) {
     <motion.button
       type="button"
       onClick={onToggle}
+      data-music-toggle
       aria-label={playing ? 'Pause music' : 'Play music'}
       className="fixed bottom-5 right-5 z-40 flex size-16 items-center justify-center rounded-full bg-wine text-paper shadow-[0_6px_18px_rgba(90,15,27,0.4)]"
       initial={{ scale: 0, opacity: 0 }}

@@ -6,17 +6,50 @@
   --font-sans: 'Cinzel', Georgia, serif;
   --font-display: 'Instrument Serif', Georgia, serif;
 
+  /* "classic" theme: cream, gold and burgundy (the default) */
   --color-paper: #f9f0e0;
   --color-card: #fbf5ea;
   --color-cream: #f6f1e8;
-  --color-sand: #e8ddcf;
+  --color-sand: #efe3cf;
   --color-taupe: #8c7666;
   --color-ink: #6c513f;
   --color-muted: #846f61;
-  --color-gold: #a67d2b;
+  --color-gold: #b48c3d;
   --color-gold-light: #cda95a;
   --color-wine: #5a0f1b;
   --color-blush: #e9b9aa;
+}
+
+:root {
+  --seal-hi: #9b2a3a;
+  --seal-mid: #6e1424;
+  --seal-lo: #3f0912;
+  --seal-face: #5f1020;
+  --seal-edge: #3a0810;
+  --seal-rim: #a54456;
+  --seal-shadow: rgba(60, 10, 18, 0.45);
+}
+
+/* "sage" theme — set theme: 'sage' in src/config.js to use it */
+:root[data-theme='sage'] {
+  --color-paper: #f7f5ed;
+  --color-card: #fffdf7;
+  --color-cream: #f1f0e6;
+  --color-sand: #e2e3d5;
+  --color-taupe: #78806b;
+  --color-ink: #4e5545;
+  --color-muted: #777d6c;
+  --color-gold: #a68b5c;
+  --color-gold-light: #d2c19a;
+  --color-wine: #56644e;
+  --color-blush: #d8d2c1;
+  --seal-hi: #829078;
+  --seal-mid: #59684f;
+  --seal-lo: #394533;
+  --seal-face: #4d5b45;
+  --seal-edge: #303a2c;
+  --seal-rim: #a8b19a;
+  --seal-shadow: rgba(42, 52, 36, 0.35);
 }
 
 html {
@@ -32,6 +65,8 @@ body {
   overflow-x: hidden;
 }
 
+::selection { background: var(--color-sand); color: var(--color-ink); }
+
 body.locked {
   overflow: hidden;
 }
@@ -42,6 +77,14 @@ body.locked {
   background-image:
     radial-gradient(ellipse at 50% 0%, rgba(255, 249, 235, 0.9), transparent 60%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.25 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Darker torn-paper band */
+.band-paper {
+  background-color: var(--color-sand);
+  background-image:
+    radial-gradient(ellipse at 30% 20%, rgba(255, 252, 244, 0.45), transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.25 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Gold foil text */

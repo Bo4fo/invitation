@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { wedding } from '../config'
-import Reveal from './Reveal'
-import { TornCard } from './Paper'
-import { Flourish } from './Botanical'
+import Reveal, { SectionTitle } from './Reveal'
 
 function diff(target) {
   const ms = Math.max(0, new Date(target) - new Date())
@@ -15,15 +13,16 @@ function diff(target) {
   ]
 }
 
+/** One number that rolls up as it changes. */
 function Unit({ label, value }) {
   const str = String(value).padStart(2, '0')
   return (
     <div className="flex flex-col items-center">
-      <div className="relative flex h-14 min-w-12 items-center justify-center overflow-hidden px-1">
+      <div className="relative flex h-16 items-center justify-center overflow-hidden px-1">
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
             key={str}
-            className="font-serif text-4xl text-ink sm:text-5xl"
+            className="font-serif text-[clamp(38px,11vw,48px)] leading-none text-gold"
             initial={{ y: '60%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '-60%', opacity: 0 }}
@@ -33,7 +32,7 @@ function Unit({ label, value }) {
           </motion.span>
         </AnimatePresence>
       </div>
-      <span className="mt-1 font-sans text-[9px] uppercase tracking-[0.25em] text-muted sm:text-[10px]">{label}</span>
+      <span className="font-serif text-lg text-gold">{label}</span>
     </div>
   )
 }
@@ -46,21 +45,17 @@ export default function Countdown() {
   }, [])
 
   return (
-    <section id="countdown" className="px-4 py-16">
-      <Reveal from="zoom">
-        <TornCard innerClassName="px-3 py-8 text-center">
-          <p className="font-sans text-[11px] uppercase tracking-[0.4em] text-muted">The celebration begins in</p>
-          <h2 className="gold-text mt-1 font-script text-5xl leading-tight">Countdown Timer</h2>
-          <div className="mt-6 flex items-start justify-center gap-1 sm:gap-2">
-            {t.map(([k, v], i) => (
-              <div key={k} className="flex items-start">
-                <Unit label={k} value={v} />
-                {i < 3 && <span className="px-1 pt-3 font-serif text-3xl text-gold">:</span>}
-              </div>
-            ))}
-          </div>
-          <Flourish className="mt-6" />
-        </TornCard>
+    <section id="countdown" className="px-3 pb-10 pt-12">
+      <SectionTitle title="The Celebration Begins In" className="mb-2" />
+      <Reveal from="up">
+        <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-start">
+          {t.map(([k, v], i) => (
+            <div key={k} className="contents">
+              <Unit label={k} value={v} />
+              {i < 3 && <span className="pt-3 font-serif text-4xl leading-none text-gold">:</span>}
+            </div>
+          ))}
+        </div>
       </Reveal>
     </section>
   )

@@ -41,7 +41,7 @@ function RsvpForm({ onClose }) {
   const submit = (e) => {
     e.preventDefault()
     const lines = [
-      `RSVP for ${wedding.groom} & ${wedding.bride}'s wedding`,
+      `RSVP for ${wedding.partner1} & ${wedding.partner2}'s wedding`,
       `Name: ${form.name}`,
       `Attending: ${yes ? 'Accepts with pleasure' : 'Declines with regret'}`,
       yes && `Guests: ${form.guests}`,
@@ -191,15 +191,15 @@ export default function Rsvp() {
   }, [open])
 
   return (
-    <section id="rsvp" className="px-6 py-16 text-center">
-      <SectionTitle eyebrow="Kindly reply" title="RSVP" />
+    <section id="rsvp" className="px-4 pb-6 pt-16 text-center">
+      <SectionTitle title="Confirm Your Attendance" className="mb-3" />
       <Reveal>
-        <p className="mx-auto max-w-sm font-serif text-lg leading-relaxed text-muted">
-          To help us prepare for a joyful celebration, kindly confirm your attendance.
+        <p className="mx-auto max-w-sm font-serif text-lg leading-snug text-muted">
+          We would love to know if you can join us. Please let us know by {wedding.rsvpDeadline}.
         </p>
       </Reveal>
 
-      <Reveal from="zoom" className="mt-10">
+      <Reveal from="zoom" className="mt-8">
         <motion.button
           type="button"
           onClick={() => setOpen(true)}
@@ -217,8 +217,19 @@ export default function Rsvp() {
             </svg>
           </WaxSeal>
         </motion.button>
-        <p className="mt-3 font-sans text-[10px] uppercase tracking-[0.35em] text-muted">Click to open</p>
-        <p className="mt-1 font-serif text-sm italic text-muted">Please reply by {wedding.rsvpDeadline}</p>
+        <motion.svg
+          viewBox="0 0 32 16"
+          className="mx-auto mt-4 w-7 text-gold"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          animate={{ y: [0, -6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          aria-hidden="true"
+        >
+          <path d="M2 13 L16 3 L30 13" />
+        </motion.svg>
+        <p className="px-[0.2em] font-script text-3xl text-gold">Click to open</p>
       </Reveal>
 
       <AnimatePresence>

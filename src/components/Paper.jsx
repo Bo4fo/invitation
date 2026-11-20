@@ -15,6 +15,27 @@ function tornPath(seed) {
 const TOP = tornPath(1)
 const BOTTOM = tornPath(2)
 
+const BAND_TOP = tornPath(3)
+const BAND_BOTTOM = tornPath(4)
+
+/**
+ * Full-width band of darker, grainy paper with hand-torn top and bottom edges.
+ * Florals can overlap its edges (they sit outside it with a higher z-index).
+ */
+export function TornBand({ children, className = '', id }) {
+  return (
+    <section id={id} className={`relative z-0 my-2 drop-shadow-[0_4px_10px_rgba(108,81,63,0.12)] ${className}`}>
+      <svg viewBox="0 0 100 12" preserveAspectRatio="none" className="block h-5 w-full" aria-hidden="true">
+        <path d={BAND_TOP} fill="var(--color-sand)" />
+      </svg>
+      <div className="band-paper -my-px">{children}</div>
+      <svg viewBox="0 0 100 12" preserveAspectRatio="none" className="block h-5 w-full -scale-y-100" aria-hidden="true">
+        <path d={BAND_BOTTOM} fill="var(--color-sand)" />
+      </svg>
+    </section>
+  )
+}
+
 /** A cream card with hand-torn top and bottom edges. */
 export function TornCard({ children, className = '', innerClassName = '' }) {
   return (
@@ -42,22 +63,22 @@ function sealPath(R = 50) {
 }
 const SEAL = sealPath()
 
-/** Burgundy wax seal; children are rendered on top of it (letters, "RSVP"…). */
+/** Wax seal (colours come from the theme in index.css); children are rendered on top of it (letters, "RSVP"…). */
 export function WaxSeal({ children, className = '' }) {
   const id = 'seal' + useId().replace(/[^a-zA-Z0-9]/g, '')
   return (
     <div className={`relative ${className}`}>
-      <svg viewBox="-60 -60 120 120" className="h-full w-full drop-shadow-[0_6px_10px_rgba(60,10,18,0.45)]" aria-hidden="true">
+      <svg viewBox="-60 -60 120 120" className="h-full w-full drop-shadow-[0_6px_10px_var(--seal-shadow)]" aria-hidden="true">
         <defs>
           <radialGradient id={id} cx="-14" cy="-18" r="80" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#9b2a3a" />
-            <stop offset="0.45" stopColor="#6e1424" />
-            <stop offset="1" stopColor="#3f0912" />
+            <stop offset="0" stopColor="var(--seal-hi)" />
+            <stop offset="0.45" stopColor="var(--seal-mid)" />
+            <stop offset="1" stopColor="var(--seal-lo)" />
           </radialGradient>
         </defs>
         <path d={SEAL} fill={`url(#${id})`} />
-        <circle r="38" fill="#5f1020" stroke="#3a0810" strokeWidth="2.2" />
-        <circle r="38" fill="none" stroke="#a54456" strokeOpacity="0.45" strokeWidth="1" transform="translate(-0.8 -0.8)" />
+        <circle r="38" fill="var(--seal-face)" stroke="var(--seal-edge)" strokeWidth="2.2" />
+        <circle r="38" fill="none" stroke="var(--seal-rim)" strokeOpacity="0.45" strokeWidth="1" transform="translate(-0.8 -0.8)" />
         <circle r="33" fill="none" stroke="#cda95a" strokeOpacity="0.5" strokeWidth="0.6" />
         <path d="M-30 -36 C -18 -46, 6 -48, 20 -42" stroke="#fff" strokeOpacity="0.18" strokeWidth="3" fill="none" strokeLinecap="round" />
       </svg>

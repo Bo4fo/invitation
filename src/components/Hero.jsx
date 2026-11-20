@@ -85,7 +85,7 @@ export default function Hero() {
         </motion.p>
 
         <h1 className="mt-6 font-script text-[clamp(64px,19vw,96px)] leading-[1.05]" style={glow}>
-          <Letters text={wedding.groom} delay={BASE + 0.6} />
+          <Letters text={wedding.partner1} delay={BASE + 0.6} />
           <motion.span
             className="block font-script text-4xl leading-[1.2]"
             initial={{ opacity: 0, scale: 0.3, rotate: -30 }}
@@ -94,7 +94,7 @@ export default function Hero() {
           >
             &amp;
           </motion.span>
-          <Letters text={wedding.bride} delay={BASE + 1.4} />
+          <Letters text={wedding.partner2} delay={BASE + 1.4} />
         </h1>
 
         <motion.a

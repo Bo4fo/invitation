@@ -1,6 +1,8 @@
 import { motion } from 'motion/react'
 import { wedding } from '../config'
-import Reveal from './Reveal'
+import Reveal, { SectionTitle } from './Reveal'
+import { TornBand } from './Paper'
+import { Breathe, RoseCluster } from './Botanical'
 
 const sway = (x, y, dir, delay) => ({
   style: { transformOrigin: `${x}px ${y}px`, transformBox: 'view-box' },
@@ -23,34 +25,34 @@ function Illustration() {
     <svg viewBox="0 0 270 200" className="mx-auto w-60" aria-hidden="true">
       <defs>
         <linearGradient id="dress" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#cdb0cf" />
-          <stop offset="1" stopColor="#b896bb" />
+          <stop offset="0" stopColor="#c6cdbb" />
+          <stop offset="1" stopColor="#9da98e" />
         </linearGradient>
         <linearGradient id="suit" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#a3ae86" />
-          <stop offset="1" stopColor="#7f8c64" />
+          <stop offset="0" stopColor="#a9ad99" />
+          <stop offset="1" stopColor="#727c66" />
         </linearGradient>
       </defs>
 
       {/* dress */}
       <motion.g {...sway(98, 6, 1, 0)}>
         <Hanger x={98} />
-        <path d="M80 38 L84 50 M116 38 L112 50" stroke="#b896bb" strokeWidth="3" />
+        <path d="M80 38 L84 50 M116 38 L112 50" stroke="#9da98e" strokeWidth="3" />
         <path d="M82 46 C 90 54, 106 54, 114 46 L110 84 L86 84 Z" fill="url(#dress)" />
-        <path d="M86 50 L98 66 L110 50" fill="none" stroke="#a37fa6" strokeWidth="1" />
+        <path d="M86 50 L98 66 L110 50" fill="none" stroke="#849078" strokeWidth="1" />
         <path d="M84 84 C 70 120, 54 154, 42 190 C 74 198, 124 200, 158 188 C 144 152, 124 118, 112 84 Z" fill="url(#dress)" />
         <g stroke="#e3d1e4" strokeWidth="1.2" fill="none" opacity="0.8">
           <path d="M92 90 C 86 124, 76 160, 70 192" />
           <path d="M100 90 C 100 126, 100 160, 102 196" />
           <path d="M106 90 C 114 124, 124 156, 134 192" />
         </g>
-        <rect x="84" y="80" width="28" height="7" rx="2" fill="#c9a9c6" />
+        <rect x="84" y="80" width="28" height="7" rx="2" fill="#bbc2ae" />
         {/* bow + flowing ribbon */}
-        <path d="M88 83 C 80 74, 72 78, 76 85 C 72 92, 80 94, 88 85 Z" fill="#d9c0d8" stroke="#b896bb" strokeWidth="0.6" />
+        <path d="M88 83 C 80 74, 72 78, 76 85 C 72 92, 80 94, 88 85 Z" fill="#d9decf" stroke="#9da98e" strokeWidth="0.6" />
         <motion.path
           d="M86 86 C 70 100, 52 92, 40 104 C 32 112, 26 108, 20 116"
           fill="none"
-          stroke="#c7b9a0"
+          stroke="#c9b48a"
           strokeWidth="3"
           strokeLinecap="round"
           animate={{ d: ['M86 86 C 70 100, 52 92, 40 104 C 32 112, 26 108, 20 116', 'M86 86 C 70 96, 54 100, 40 98 C 30 98, 26 112, 18 110'] }}
@@ -87,33 +89,45 @@ function Illustration() {
 }
 
 export default function DressCode() {
-  const { subtitle, text, colors } = wedding.dressCode
+  const { text, colors } = wedding.dressCode
   return (
-    <section className="bg-cream px-6 py-16 text-center">
-      <Reveal from="zoom">
-        <Illustration />
-      </Reveal>
-      <Reveal>
-        <h2 className="mt-4 font-display text-5xl text-ink">Dress Code</h2>
-        <p className="mt-2 font-display text-xl italic text-muted">{subtitle}</p>
-      </Reveal>
-      <Reveal delay={0.15}>
-        <p className="mx-auto mt-5 max-w-xs font-serif text-lg leading-relaxed text-ink/80">{text}</p>
-      </Reveal>
-      <div className="mt-8 flex justify-center gap-3">
-        {colors.map((c, i) => (
-          <motion.span
-            key={c}
-            className="size-14 rounded-full border-4 border-white shadow-[0_0_0_1px_rgba(108,81,63,0.15),0_4px_10px_rgba(108,81,63,0.12)]"
-            style={{ background: c }}
-            initial={{ scale: 0, y: 20 }}
-            whileInView={{ scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.12, type: 'spring', stiffness: 180, damping: 12 }}
-            whileHover={{ y: -6 }}
-          />
-        ))}
-      </div>
-    </section>
+    <div className="relative">
+      {/* rose vines spilling over the band's corners */}
+      <Breathe className="pointer-events-none absolute -right-8 -top-8 z-10 w-48" tilt={-2}>
+        <RoseCluster corner="tr" />
+      </Breathe>
+      <TornBand>
+        <div className="px-8 pb-16 pt-16 text-center">
+          <Reveal from="zoom">
+            <Illustration />
+          </Reveal>
+          <SectionTitle title="Dress Code" className="mt-2" />
+          <Reveal>
+            <p className="mx-auto -mt-6 max-w-xs font-serif text-lg leading-snug text-muted">{text}</p>
+          </Reveal>
+          <div className="mt-6 flex justify-center gap-3">
+            {colors.map((c, i) => (
+              <motion.span
+                key={c}
+                className="size-11 rounded-full border-[3px] border-white shadow-[0_0_0_1px_rgba(108,81,63,0.15),0_4px_10px_rgba(108,81,63,0.12)]"
+                style={{ background: c }}
+                initial={{ scale: 0, y: 20 }}
+                whileInView={{ scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.12, type: 'spring', stiffness: 180, damping: 12 }}
+              />
+            ))}
+          </div>
+
+          <SectionTitle title="Gift Preference" className="mt-12" />
+          <Reveal>
+            <p className="mx-auto -mt-6 max-w-xs font-serif text-lg leading-snug text-muted">{wedding.gifts}</p>
+          </Reveal>
+        </div>
+      </TornBand>
+      <Breathe className="pointer-events-none absolute -bottom-8 -left-8 z-10 w-48" tilt={2} delay={0.8}>
+        <RoseCluster corner="bl" />
+      </Breathe>
+    </div>
   )
 }

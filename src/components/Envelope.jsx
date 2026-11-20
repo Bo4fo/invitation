@@ -68,7 +68,7 @@ export default function Envelope({ onOpen }) {
             type="button"
             onClick={start}
             aria-label="Tap to open the invitation"
-            className="relative h-svh w-full max-w-[min(100vw,62svh)] cursor-pointer overflow-hidden outline-none"
+            className="relative aspect-[390/690] w-[min(100vw,calc(82svh*0.565))] cursor-pointer overflow-hidden shadow-[0_10px_40px_rgba(108,81,63,0.18)] outline-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2 }}
