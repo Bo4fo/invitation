@@ -17,7 +17,7 @@ export default function App() {
   const [playing, setPlaying] = useState(false)
   const [musicError, setMusicError] = useState(false)
   const audio = useRef(null)
-  const userPaused = useRef(false) // true only when the guest pressed pause themselves
+  const userPaused = useRef(false)
 
   useEffect(() => {
     if (!import.meta.env.DEV) return
@@ -55,7 +55,7 @@ export default function App() {
   const playMusic = () => {
     const a = audio.current
     if (!a || !a.paused) return
-    a.play().catch(() => {}) // refused → the next tap anywhere retries (see below)
+    a.play().catch(() => { }) // refused → the next tap anywhere retries (see below)
   }
 
   const toggleMusic = () => {
